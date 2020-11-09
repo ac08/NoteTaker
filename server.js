@@ -7,10 +7,15 @@ const express = require("express");
 const path = require('path');
 const apiRoutes = require("./routes/apiRoutes");
 const htmlRoutes = require("./routes/htmlRoutes");
-// Initialize the app and create a port
 
+// ==============================================================================
+// EXPRESS CONFIGURATION
+// This sets up the basic properties for our express server
+// ==============================================================================
 
+// Tells node that we are creating an 'express' server
 const app = express();
+// Sets an initial port
 const PORT = process.env.PORT || 3000;
 
 // Sets up the Express app to establish a static directory to access static files
