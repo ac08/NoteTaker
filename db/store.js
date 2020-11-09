@@ -19,20 +19,21 @@ class Store {
 ​
   getNotes() {
     return this.read().then((notes) => {
-        // here you will write a function that uses the above read function and parses the notes from the file 
+       // here you will write a function that uses the above read function and parses the notes from the file 
       let parsedNotes;
-​
+      try {
+        parsedNotes =[].concat(JSON.parse(notes));
       // If notes isn't an array or can't be turned into one, send back a new empty array
-     
-​
+      } catch (err) {
+        parsedNotes = [];
+      }
       return parsedNotes;
     })
-    
   }
 ​
   addNote(note) {
     // set up variables with our notes data here
-​
+​   const { title, text } = note;
 ​
     // Error handle here, if we have no title or text added throw a new error explaining what is wrong
     if (!title || !text) {
@@ -40,9 +41,13 @@ class Store {
     }
 ​
     // Add a unique id to the note using uuid package
+    const newNote = { title, text, id: ++this.lastId }
 ​
     // Get all notes, add the new note, write all the updated notes, return the newNote
-  
+    return this.getNotes()
+    .then(notes => [...notes, newNote])
+    .then(updatedNotes => this.write(updatedNotes))
+    .then(() => newNote);
   }
 ​
   removeNote(id) {
