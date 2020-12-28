@@ -1,31 +1,27 @@
-// require dependencies 
-const router = require('express').Router()
-const store  = require('../db/store.js')
+const router = require("express").Router();
+const store = require('../db/storeOld');
 
-// GET '/api/notes' responds with all the notes from the db
-router.get('/notes', (req, res) => {
-    // the GET route where getNotes() function is initialized
-    store
+// GET "/api/notes" responds with all notes from the database
+router.get("/notes", (req, res) => {
+  store
     .getNotes()
-    .then(notes => res.json(notes))
-    .catch(err => res.status(500).json(err));
+    .then((notes) => res.json(notes))
+    .catch((err) => res.status(500).json(err));
 });
 
-router.post('/notes/:id', (req, res) => {
-    // the POST route where addNotes() function is initialized
-    store
-    .addNotes(req.body)
-    .then(note => res.json(note))
-    .catch(err => res.status(500).json(err));
-})
+router.post("/notes", (req, res) => {
+  store
+    .addNote(req.body)
+    .then((note) => res.json(note))
+    .catch((err) => res.status(500).json(err));
+});
 
-router.delete('/notes/:id', (req, res) => {
-    // the DELETE route where removeNote() function is initialized
-    store
-    // pass Id from client req
+// DELETE "/api/notes" deletes the note with an id equal to req.params.id
+router.delete("/notes/:id", (req, res) => {
+  store
     .removeNote(req.params.id)
-    .then(() => res.json({ok: true}))
-    .catch(err => res.status(500).json(err));
+    .then(() => res.json({ ok: true }))
+    .catch((err) => res.status(500).json(err));
 });
 
 module.exports = router;
