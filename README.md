@@ -1,8 +1,8 @@
-# Unit 11 Express Homework: Note Taker
+# Unit 11 Express Homework: ExpressNote
 
 ## Description
 
-Create an application that can be used to write, save, and delete notes. This application will use an express backend and save and retrieve note data from a JSON file (npm file system module).
+Created an application that can be used to write, save, and delete notes. This application uses an express backend to save and retrieve note data from a JSON file (npm file system module).
 
 ## User Story
 
@@ -20,10 +20,8 @@ For users that need to keep track of a lot of information, it's easy to forget o
 
 ## Access to the Application
 
-You are required to submit the following:
-
 * The URL of the GitHub repository
 
-https://github.com/ac08/NoteTaker
+https://github.com/andrewcircelli/ExpressNote
 
 - - -
